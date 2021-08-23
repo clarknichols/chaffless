@@ -9,7 +9,6 @@ def main():
         json.dump(obj=events, fp=file, indent=4)
 
 
-
 def fetch_events ():
     with open('data/links.html', mode='r', encoding='UTF-8') as file:
         text = file.read()
@@ -24,13 +23,9 @@ def fetch_events ():
     )
     return events
 
-def fetch_decklists(event_url):
-    base ='https://magic.wizards.com/en/articles/archive/mtgo-standings/'
-    response = requests.get(event_url)
-    article: lxml.html.HtmlElement = lxml.html.fromstring(response.text)
-    decks = article.xpath(
-        '//div[@class="deck-list-text"]'
-    )
+
+
+
 
 if __name__ == '__main__':
     main()
