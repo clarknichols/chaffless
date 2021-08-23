@@ -17,7 +17,6 @@ def fetch_decklists(event_url: str):
     decks = article.xpath(
         '//div[@class="deck-list-text"]'
     )
-    print(len(decks))
     decklists = [extract_decklist(deck) for deck in decks]
     for decklist in decklists:
         decklist['event'] = event
