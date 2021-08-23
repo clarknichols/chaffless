@@ -31,10 +31,8 @@ def after_last_slash(url: str):
 def extract_decklist(deck: lxml.html.HtmlElement):
     maindeck = extract_maindeck(deck)
     sideboard = extract_sideboard(deck)
-    return {
-        'maindeck': maindeck,
-        'sideboard': sideboard
-    }
+    decklist = join_boards(maindeck=maindeck, sideboard=sideboard)
+    return decklist
 
 
 def extract_maindeck(deck: lxml.html.HtmlElement):
@@ -44,7 +42,7 @@ def extract_maindeck(deck: lxml.html.HtmlElement):
         '/span[@class="row"]'
         )
     print(len(rows))
-    return [get_card(row) for row in rows]
+    return [get_card(row, 'maindeck') for row in rows]
 
 
 def extract_sideboard(deck: lxml.html.HtmlElement):
@@ -52,20 +50,25 @@ def extract_sideboard(deck: lxml.html.HtmlElement):
         'div[@class="sorted-by-sideboard-container  clearfix element"]'
         '/span[@class="row"]'
         )
-    return [get_card(row) for row in rows]
+    return [get_card(row, 'sideboard') for row in rows]
 
 
-def get_card(row: lxml.html.HtmlElement):
+def get_card(row: lxml.html.HtmlElement, board: str):
     count = row.xpath('span[@class="card-count"]/text()')
     name = row.xpath('span[@class="card-name"]/a/text()')
-    if not name: 
+    if not name:
         #sometimes there is no metadata included with the card
         #and  the name is in the card-name <span> instead of a child <a>
         name = row.xpath('span[@class="card-name"]/text()')
-    return {
-        'name': name[0],
-        'count': count[0]
-    }
+    return {name[0]:{board: count[0]}}
+
+def join_boards(maindeck: dict, sideboard: dict):
+    """combines maindeck and sideboard into a single list of cards"""
+    intersection = maindeck.keys() & sideboard.keys()
+    for card in intersection:
+        sideboard[card]['maindeck'] = maindeck[card]['maindeck']
+    maindeck.update(sideboard)
+    return maindeck
 
 
 if __name__ == '__main__':
