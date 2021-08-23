@@ -9,14 +9,6 @@
 <p><a href="javascript:void(0);"><span>See more archives</span></a></p> </div>
 ```
 
-## javascript
-
-see mx.js lines 212-290
-
-### thoughts
-
-based on the above two it seems that the endpoint contains ```/en/section-articles-see-more-ajax?dateoff=```
-
 ## Endpoint intercepted from wireshark
 When I click the 'see-more' button my browser makes a GET request to the following endpoint:
 ```/en/section-articles-see-more-ajax?dateoff=&l=en&f=9041&search-result-theme=&limit=4&fromDate=&toDate=&sort=DESC&word=&offset=6```
