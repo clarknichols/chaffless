@@ -16,4 +16,17 @@ see mx.js lines 212-290
 ## thoughts
 
 endpoint contains ```/en/section-articles-see-more-ajax?dateoff=```
+
 I have to assume this is the beginning of the endpoint with the domain being magic.wizards.com, but I could be wrong
+
+# Ok you know what fuck this I'm just going to intercept it with wireshark
+
+```/en/section-articles-see-more-ajax?dateoff=&l=en&f=9041&search-result-theme=&limit=4&fromDate=&toDate=&sort=DESC&word=&offset=6```
+
+BOOM BABY (shoutout to Chris Greer's youtube channel)
+
+so I think the final endpoint should be:
+
+```https://wizards.magic.com/en/section-articles-see-more-ajax?dateoff=&l=en&f=9041&search-result-theme=&limit=4&fromDate=&toDate=&sort=DESC&word=&offset=6```
+
+ok that doesn't actually work and I will have to dig into the packet a bit more, but this is progress. I think I can ignore the js from now on.
