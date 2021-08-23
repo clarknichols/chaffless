@@ -41,8 +41,11 @@ def extract_maindeck(deck: lxml.html.HtmlElement):
         '/div'
         '/span[@class="row"]'
         )
-    print(len(rows))
-    return [get_card(row, 'maindeck') for row in rows]
+    cards = {}
+    for row in rows:
+        card = get_card(row, 'maindeck')
+        cards.update(card)
+    return cards
 
 
 def extract_sideboard(deck: lxml.html.HtmlElement):
@@ -50,7 +53,11 @@ def extract_sideboard(deck: lxml.html.HtmlElement):
         'div[@class="sorted-by-sideboard-container  clearfix element"]'
         '/span[@class="row"]'
         )
-    return [get_card(row, 'sideboard') for row in rows]
+    cards = {}
+    for row in rows:
+        card = get_card(row, 'sideboard')
+        cards.update(card)
+    return cards
 
 
 def get_card(row: lxml.html.HtmlElement, board: str):
