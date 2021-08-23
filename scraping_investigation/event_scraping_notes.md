@@ -9,9 +9,8 @@
 <p><a href="javascript:void(0);"><span>See more archives</span></a></p> </div>
 ```
 
-## Endpoint intercepted from wireshark
-When I click the 'see-more' button my browser makes a GET request to the following endpoint:
-```/en/section-articles-see-more-ajax?dateoff=&l=en&f=9041&search-result-theme=&limit=4&fromDate=&toDate=&sort=DESC&word=&offset=6```
+## Endpoint intercepted using wireshark
+```GET /en/section-articles-see-more-ajax?dateoff=&l=en&f=9041&search-result-theme=&limit=4&fromDate=&toDate=&sort=DESC&word=&offset=6```
 
 so I think the final endpoint should be:
 
