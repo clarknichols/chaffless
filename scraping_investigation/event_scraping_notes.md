@@ -1,4 +1,4 @@
-# pieces of the URL we know
+# Reverse engineering the API call to get more events that the 'see more' button uses
 
 ## relevant code pieces
 
