@@ -17,6 +17,7 @@ def fetch_decklists(event_url: str):
     decks = article.xpath(
         '//div[@class="deck-list-text"]'
     )
+    print(len(decks))
     decklists = [extract_decklist(deck) for deck in decks]
     for decklist in decklists:
         decklist['event'] = event
@@ -38,29 +39,35 @@ def extract_decklist(deck: lxml.html.HtmlElement):
 
 def extract_maindeck(deck: lxml.html.HtmlElement):
     rows = deck.xpath(
-        '/div[@class="sorted-by-overview-container sortedContainer"]'
+        'div[@class="sorted-by-overview-container sortedContainer"]'
         '/div'
         '/span[@class="row"]'
         )
+    print(len(rows))
     return [get_card(row) for row in rows]
 
 
 def extract_sideboard(deck: lxml.html.HtmlElement):
     rows = deck.xpath(
-        '/div[@class="sorted-by-sideboard-container  clearfix element"]'
+        'div[@class="sorted-by-sideboard-container  clearfix element"]'
         '/span[@class="row"]'
         )
     return [get_card(row) for row in rows]
 
 
 def get_card(row: lxml.html.HtmlElement):
-    count = row.xpath('/span[@class="card-count"]/@text')
-    name = row.xpath('/span[@class="card-name"]/@text')
+    count = row.xpath('span[@class="card-count"]/text()')
+    name = row.xpath('span[@class="card-name"]/a/text()')
+    if not name: 
+        #sometimes there is no metadata included with the card
+        #and  the name is in the card-name <span> instead of a child <a>
+        name = row.xpath('span[@class="card-name"]/text()')
     return {
-        'name': name,
-        'count': count
+        'name': name[0],
+        'count': count[0]
     }
 
 
 if __name__ == '__main__':
     main()
+
