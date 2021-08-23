@@ -24,9 +24,6 @@ def fetch_events ():
     return events
 
 
-
-
-
 if __name__ == '__main__':
     main()
     
