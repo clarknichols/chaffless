@@ -1,6 +1,7 @@
 """calls scryfall API for initial card list"""
 
 import requests
+import pandas as pd
 
 ENCODINGS = {
     "!": "%21",
@@ -25,18 +26,24 @@ ENCODINGS = {
 }
 
 def search(query: str):
-    pass
+    domain = "https://api.scryfall.com"
+    endpoint = "cards/search"
+    parameters = "order=cmc&unique=cards"
+    request = f"{domain}/{endpoint}?{parameters}&q={_encode(query)}"
+    response = requests.get(request)
+    with open("data/response.json", "w", encoding="UTF-8") as f:
+        f.write(response.text)
 
-def encode(raw: str):
-    encoded = percent_encoding(raw)
+def _encode(raw: str) -> str:
+    encoded = _percent_encoding(raw)
     encoded = encoded.replace(" ", "+")
     return encoded
 
-def percent_encoding(raw: str):
+def _percent_encoding(raw: str) -> str:
     encoded = raw
     for char, encoding in ENCODINGS.items():
         encoded = encoded.replace(char, encoding)
     return encoded
 
 if __name__ == "__main__":
-    print(encode("c=red pow:3"))
+    search("banned:historic")
