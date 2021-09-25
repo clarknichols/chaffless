@@ -9,7 +9,7 @@ def main():
         json.dump(obj=events, fp=file, indent=4)
 
 
-def fetch_events ():
+def fetch_events():
     with open('data/links.html', mode='r', encoding='UTF-8') as file:
         text = file.read()
 

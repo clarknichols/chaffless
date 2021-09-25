@@ -2,6 +2,7 @@ import requests
 import lxml.html
 import json
 
+
 def main():
     with open('data/events.json', 'r', encoding='UTF-8') as file:
         events = json.load(file)
@@ -9,6 +10,7 @@ def main():
     decklists = fetch_decklists(event)
     with open('data/decklists.json', 'w', encoding='UTF-8') as file:
         json.dump(decklists, file, indent=2)
+
 
 def fetch_decklists(event_url: str):
     event = after_last_slash(event_url)
@@ -63,10 +65,11 @@ def get_card(row: lxml.html.HtmlElement, board: str):
     count = row.xpath('span[@class="card-count"]/text()')
     name = row.xpath('span[@class="card-name"]/a/text()')
     if not name:
-        #sometimes there is no metadata included with the card
-        #and  the name is in the card-name <span> instead of a child <a>
+        # sometimes there is no metadata included with the card
+        # and  the name is in the card-name <span> instead of a child <a>
         name = row.xpath('span[@class="card-name"]/text()')
-    return {name[0]:{board: count[0]}}
+    return {name[0]: {board: count[0]}}
+
 
 def join_boards(maindeck: dict, sideboard: dict):
     """combines maindeck and sideboard into a single list of cards"""
@@ -79,4 +82,3 @@ def join_boards(maindeck: dict, sideboard: dict):
 
 if __name__ == '__main__':
     main()
-
