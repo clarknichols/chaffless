@@ -6,10 +6,10 @@ This project sprung out of a mutual desire for a tool that could assist in creat
 One example of gatherer's frustrating operation is its abysmal advanced search tool in which user error often requires inputting all previous information because an "and" should have been an "or." The function of the conditional statements is unclear, and to this day I cannot tell you if conditional statement order matters when using gatherer.  
 
 *Take the following block of gatherer code, for example*
->OR Black  
-AND Red  
+>**OR** Black  
+**AND** Red  
 
-It is actually very unclear what this search does. Do all of the listed cards have to be "**Red**" and does the "**OR** Black" statement mean that the only additional color is Black? Can this return cards without the color identity "Red" in them, such as [Pack Rat](https://scryfall.com/card/rtr/73/pack-rat)?
+It is actually very unclear what this search does. Do all of the listed cards have to be "Red" and does the "**OR** Black" statement mean that a mono-black card can show up in the search results? Can [Pack Rat](https://scryfall.com/card/rtr/73/pack-rat) show up here?
 > <img src="https://c1.scryfall.com/file/scryfall-cards/large/front/1/7/170693f5-13db-4191-99b1-e527ffb5b88e.jpg?1562783180" width="200">
 >
 >~~_Delicious tea or deadly poison?_~~  
