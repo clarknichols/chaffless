@@ -1,15 +1,16 @@
 # History, Purpose, and Intended Use
 _Documentation Clark Nichols with Help from Dara Dadachanji_
 ## History
-This project sprung out of a mutual desire for a tool that could assist in creation of well-tuned Magic:The Gathering decks. Both contributors (Dara and myself) began playing in a time before [scryfall.com](httsp://scryfall.com) existed. Both of us have wasted countless Wizard of the Coast's not-so-stellar [gatherer tool](https://gatherer.wizards.com). The user-interface for gatherer is clunky, unintuitive, and in-general a poor way of finding any useful cards.  
 
-One example of gatherer's frustrating operation is its abysmal advanced search tool in which user error often requires inputting all previous information because an "and" should have been an "or." The function of the conditional statements is unclear, and to this day I cannot tell you if conditional statement order matters when using gatherer.  
+This project sprung out of a mutual desire for a tool that could assist in creation of well-tuned Magic:The Gathering decks. Both contributors (Dara and myself) began playing in a time before [scryfall.com](httsp://scryfall.com) existed. Both of us have wasted countless Wizard of the Coast's not-so-stellar [gatherer tool](https://gatherer.wizards.com). The user-interface for gatherer is clunky, unintuitive, and in-general a poor way of finding any useful cards, so rest-assured we are well aware of the painful proccess of finding the perfect card with bad tools.
+
+One example of gatherer's frustrating interface is its abysmal advanced search tool, in which user error often requires inputting all previous information because an "and" should have been an "or." Additionally, the function of the conditional statements is unclear, and to this day (after playing the game for twelve years) I cannot tell you if conditional statement order matters when using gatherer, let alone optimize a decent search for the cards I actually want to find.
 
 *Take the following block of gatherer code, for example*
 >**OR** Black  
 **AND** Red  
 
-It is actually very unclear what this search does. Do all of the listed cards have to be "Red" and does the "**OR** Black" statement mean that a mono-black card can show up in the search results? Can [Pack Rat](https://scryfall.com/card/rtr/73/pack-rat) show up here?
+It is actually very unclear what this search would return. Do all of the listed cards have to be "Red" and does the "**OR** Black" statement mean that a mono-black card can show up in the search results, or only cards that have Black in addition to Red in their color identity? Basically: is [Pack Rat](https://scryfall.com/card/rtr/73/pack-rat) a possibility here?
 > <img src="https://c1.scryfall.com/file/scryfall-cards/large/front/1/7/170693f5-13db-4191-99b1-e527ffb5b88e.jpg?1562783180" width="200">
 >
 >~~_Delicious tea or deadly poison?_~~  
@@ -29,7 +30,8 @@ In other words: how can we remove [Storm Crow](https://scryfall.com/card/9ed/100
 
 This tool, then, is part of a long history of MTG Spikes trying to build decks and find interesting cards quickly and easily, and get rid of the "chaff."
 
-##Technical Aspects of this Solution
+## Technical Aspects of this Solution
+
 It is due almost entirely to scryfall.com's amazing API documentation that we were able to create Python scripts that could interact with an unimagineable wealth of Magic:The Gathering knowledge. The largest part of the project, however, was figuring out what consituted "chaff" and what constituted "good."
 
 Gosh I really want to make an ASP-less chaff joke.
